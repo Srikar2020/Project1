@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bay Area Real Estate</title>
-    <link rel="stylesheet" href="style.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 
@@ -39,71 +41,24 @@
 
             </div>
 
-            <form>
-                <label for="searchCity"><h5>Search for a City in the Bay:</h5></label>
-                <div class="row">
+            <form id="search-form">
+                <h5>Search for a City in the Bay:</h5>
+                    <!--
                     <div class="col text-center" id="searchBar">
                         <input type="text" class="form-control" id="search">
                     </div>
                     <div class="col text-center" id="searchBtn">
-                        <button type="submit" class="btn btn-primary" id="searchIcon"><i class="fas fa-search"></i></button>
+                        <button type = "submit" id="start-search"> Search</button>
                     </div>
-                </div>
+                    -->
+                <input type="text" class="form-control" id="search" />
+                <button type="submit" id="start-search"> Search</button>
             </form>
-    
 
-            <div class = "row"> 
-                <div class = "col text-center">
-                    <button type = "submit" id="start-search"> Search</button>
-            </div>
+            <div id = "apartments-container"></div>
         </div>
        
     </div>
-
-    <!--
-        
-
-
-
-
-
-
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="sidenav col-xs-3 col-sm-3">
-                <form>
-                    <label for="searchCity">
-                        <h5>
-                            Search for a City in the Bay:
-                        </h5>
-                    </label>
-                    <div class="row">
-                        <div class="col-8 col-sm-8" id="searchBar">
-                            <input type="text" class="form-control" id="search">
-                        </div>
-                        <div class="col-8 col-sm-3" id="searchBtn">
-                            <button type="submit" class="btn btn-primary" id="searchIcon"><i class="fas fa-search"></i></button>
-                        </div>
-                        <div id="cities"></div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-xs-9 col-sm-9">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card" id="cityInfo">
-                            <div class="card-body">
-                                <h2 class
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
--->
-    
+    <script src="./script.js"></script>
 </body>
 </html>
