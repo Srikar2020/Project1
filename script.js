@@ -2,51 +2,6 @@ var userFormEl = document.querySelector("#search-form");
 var nameInputEl = document.querySelector("#search");
 var apartmentsEl = document.querySelector("#apartments-container");
 
-var test = function() { 
-    /*
-    var apiURL = "https://realtor.p.rapidapi.com/properties/v2/list-for-rent?sort=relevance&city=San%20Francisco&state_code=CA&limit=200&offset=0";
-    fetch(apiURL, {
-	    "method": "GET",
-	    "headers": {
-		    "x-rapidapi-host": "realtor.p.rapidapi.com",
-		    "x-rapidapi-key": "b85567ce04msh32da023304a149dp1f9df4jsna52f743735c5"
-	    }
-    }).then(function(response) {
-        if(response.ok) {
-            response.json().then(function(data) {
-                console.log(data);
-            });
-        }
-        else{
-            alert("Error: " + response.statusText);
-        }
-    }).catch(function(error){
-        alert("Unable to connect to OpenWeatherMap");
-    })
-    */
-    
-    /*
-   fetch("https://trueway-places.p.rapidapi.com/FindPlacesNearby?type=cafe&radius=1500&language=en&location=37.294270%252C-122.039210", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "trueway-places.p.rapidapi.com",
-		"x-rapidapi-key": "b85567ce04msh32da023304a149dp1f9df4jsna52f743735c5"
-	}
-    }).then(function(response) {
-        if(response.ok) {
-            response.json().then(function(data) {
-                console.log(data);
-            });
-        }
-        else{
-            alert("Error: " + response.statusText);
-        }
-    }).catch(function(error){
-        alert("Unable to connect to OpenWeatherMap");
-    });
-    */
-}
-
 var getApartments = function(city) {
     
     var apiURL = "https://realtor.p.rapidapi.com/properties/v2/list-for-rent?sort=relevance&city=" + city + "&state_code=CA&limit=200&offset=0";
@@ -85,6 +40,7 @@ var displayApartments = function(data) {
     for(var i = 0; i < 5; i ++){
         var cardEl = document.createElement("div");
         cardEl.classList = "card text-center p-2 mx-3";
+        cardEl.setAttribute("id", "apartment-" + i);
 
         var addressEl = document.createElement("h5");
         addressEl.classList = "card-title";
@@ -112,12 +68,69 @@ var displayApartments = function(data) {
         cardEl.appendChild(bedbathEl);
         cardEl.appendChild(priceEl);
         cardEl.appendChild(contactEl);
+        /*
+        cardEl.appendChild(storenameEl);
+        cardEl.appendChild(storeaddressEl);
+        cardEl.appendChild(storedistanceEl);
+        */
 
         cardHolderEl.appendChild(cardEl);
     }
 
     apartmentsEl.appendChild(headerEl);
     apartmentsEl.appendChild(cardHolderEl);
+
+    setTimeout(function(){getStore(data[0].address.lat,data[0].address.lon,0);}, (0));
+    setTimeout(function(){getStore(data[1].address.lat,data[1].address.lon,1);}, (2500));
+    setTimeout(function(){getStore(data[2].address.lat,data[2].address.lon,2);}, (5000));
+    setTimeout(function(){getStore(data[3].address.lat,data[3].address.lon,3);}, (7500));
+    setTimeout(function(){getStore(data[4].address.lat,data[4].address.lon,4);}, (10000));
+}
+
+var getStore = function(lat, lon, i) {
+    var apiURL = "https://trueway-places.p.rapidapi.com/FindPlacesNearby?type=grocery_store&radius=9999&language=en&location=" + lat + "%252C" + lon;
+    fetch(apiURL, {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "trueway-places.p.rapidapi.com",
+		"x-rapidapi-key": "b85567ce04msh32da023304a149dp1f9df4jsna52f743735c5"
+	}
+    }).then(function(response) {
+        if(response.ok) {
+            response.json().then(function(data) {
+                displayStore(data, i);
+                console.log(data);
+            });
+        }
+        else{
+            alert("Error: " + response.statusText);
+        }
+    }).catch(function(error){
+        alert("Unable to connect to Trueway Places API");
+    });
+}
+
+var displayStore = function(data, i) {
+    console.log("#apartment-" + i);
+    var cardEl = document.querySelector("#apartment-" + i);
+    console.log(cardEl);
+
+    var storenameEl = document.createElement("p");
+    storenameEl.classList = "card-text";
+    storenameEl.textContent = "Nearest grocery store: " + data.results[0].name;
+
+    var storeaddressEl = document.createElement("p");
+    storeaddressEl.classList = "card-text";
+    storeaddressEl.textContent = "Store Address: " + data.results[0].address;
+
+    var storedistanceEl = document.createElement("p");
+    storedistanceEl.classList = "card-text";
+    var dist = (parseInt(data.results[0].distance)/1609).toFixed(3);
+    storedistanceEl.textContent = "Store Distance: " + dist + " miles";
+
+    cardEl.appendChild(storenameEl);
+    cardEl.appendChild(storeaddressEl);
+    cardEl.appendChild(storedistanceEl);
 }
 
 var formSubmitHandler = function(event) {
@@ -135,5 +148,3 @@ var formSubmitHandler = function(event) {
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
-
-test();
