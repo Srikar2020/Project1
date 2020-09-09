@@ -1,6 +1,41 @@
+var searches = [];
 var userFormEl = document.querySelector("#search-form");
 var nameInputEl = document.querySelector("#search");
 var apartmentsEl = document.querySelector("#apartments-container");
+var cityHolderEl = document.querySelector("#city-holder");
+
+var loadCities = function (){
+    searches = localStorage.getItem("searches");
+    if(searches === null){
+        searches = [];
+        return;
+    } 
+    searches = searches.split(",");
+    for(var i = 0; i < searches.length; i ++){
+        addCity(searches[i]);
+    }
+};
+
+var saveCities = function(city) {
+    searches.push(city);
+    localStorage.setItem("searches", searches);
+}
+
+var resetCityHandler = function(event) {
+    var cityName = event.target.innerHTML;
+    
+    getApartments(cityName);
+}
+
+var addCity = function(city) {
+    var cityEl = document.createElement("button");
+    cityEl.textContent = city;
+    cityEl.type = "button";
+    cityEl.classList = "btn btn-light border p-3 m-0";
+
+    cityHolderEl.addEventListener("click", resetCityHandler);
+    cityHolderEl.appendChild(cityEl);
+};
 
 var getApartments = function(city) {
     
@@ -23,13 +58,11 @@ var getApartments = function(city) {
     }).catch(function(error){
         alert("Unable to connect to Realtor API");
     })
-    
-    console.log(city);
 }
 
 var displayApartments = function(data) {
     apartmentsEl.textContent = "";
-    apartmentsEl.classList = "d-flex flex-column border p-2";
+    apartmentsEl.classList = "d-flex flex-column border p-2 col-12 col-md-8";
 
     var headerEl = document.createElement("h3");
     headerEl.textContent = "Apartments:";
@@ -139,6 +172,8 @@ var formSubmitHandler = function(event) {
     var city = nameInputEl.value.trim();
 
     if (city) {
+        saveCities(city);
+        addCity(city);
         getApartments(city);
         nameInputEl.value = "";
     }
@@ -148,3 +183,5 @@ var formSubmitHandler = function(event) {
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+loadCities();

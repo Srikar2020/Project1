@@ -31,7 +31,7 @@
       </section>
 
     <div class="Apartments"> 
-        <div class = "page">
+        <div class = "page mx-5 my-3">
             <h2 id="start-page-header">Apartments</h2>
             <div>
        
@@ -40,7 +40,12 @@
                 </p>
 
             </div>
+        </div>
+       
+    </div>
 
+    <div class = "m-4 row justify-content-around">
+        <div class="col-12 col-md-4">
             <form id="search-form">
                 <h5>Search for a City in the Bay:</h5>
                     <!--
@@ -54,10 +59,10 @@
                 <input type="text" class="form-control" id="search" />
                 <button type="submit" id="start-search"> Search</button>
             </form>
-
-            <div id = "apartments-container"></div>
+            <div id="city-holder" class="d-flex flex-column"></div>
         </div>
-       
+
+        <div id = "apartments-container" class = "col-12 col-md-8 col"></div>
     </div>
     <script src="./script.js"></script>
 </body>
