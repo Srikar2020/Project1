@@ -3,6 +3,10 @@ var userFormEl = document.querySelector("#search-form");
 var nameInputEl = document.querySelector("#search");
 var apartmentsEl = document.querySelector("#apartments-container");
 var cityHolderEl = document.querySelector("#city-holder");
+var loadingEl;
+var spinnerEl;
+var headerEl;
+var cardHolderEl;
 
 var loadCities = function (){
     searches = localStorage.getItem("searches");
@@ -38,6 +42,7 @@ var addCity = function(city) {
 };
 
 var getApartments = function(city) {
+    addLoading();
     
     var apiURL = "https://realtor.p.rapidapi.com/properties/v2/list-for-rent?sort=relevance&city=" + city + "&state_code=CA&limit=200&offset=0";
     fetch(apiURL, {
@@ -60,14 +65,35 @@ var getApartments = function(city) {
     })
 }
 
+var addLoading = function(){
+    if(headerEl){
+        apartmentsEl.removeChild(headerEl);
+        apartmentsEl.removeChild(cardHolderEl);
+    }
+    apartmentsEl.classList = "col-12 col-md-8 col";
+
+    loadingEl = document.createElement("h2");
+    loadingEl.textContent = "Loading...";
+    loadingEl.classList = "loadtext py-3";
+
+    spinnerEl = document.createElement("div");
+    spinnerEl.classList = "spinner";
+
+    apartmentsEl.appendChild(loadingEl);
+    apartmentsEl.appendChild(spinnerEl);
+}
+
 var displayApartments = function(data) {
+
+    apartmentsEl.removeChild(spinnerEl);
+    apartmentsEl.removeChild(loadingEl);
     apartmentsEl.textContent = "";
     apartmentsEl.classList = "d-flex flex-column border p-2 col-12 col-md-8";
 
-    var headerEl = document.createElement("h3");
+    headerEl = document.createElement("h3");
     headerEl.textContent = "Apartments:";
 
-    var cardHolderEl = document.createElement("div");
+    cardHolderEl = document.createElement("div");
     cardHolderEl.classList = "col justify-content-around";
 
     for(var i = 0; i < 5; i ++){
