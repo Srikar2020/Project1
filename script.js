@@ -1,8 +1,48 @@
+var searches = [];
 var userFormEl = document.querySelector("#search-form");
 var nameInputEl = document.querySelector("#search");
 var apartmentsEl = document.querySelector("#apartments-container");
+var cityHolderEl = document.querySelector("#city-holder");
+var loadingEl;
+var spinnerEl;
+var headerEl;
+var cardHolderEl;
+
+var loadCities = function (){
+    searches = localStorage.getItem("searches");
+    if(searches === null){
+        searches = [];
+        return;
+    } 
+    searches = searches.split(",");
+    for(var i = 0; i < searches.length; i ++){
+        addCity(searches[i]);
+    }
+};
+
+var saveCities = function(city) {
+    searches.push(city);
+    localStorage.setItem("searches", searches);
+}
+
+var resetCityHandler = function(event) {
+    var cityName = event.target.innerHTML;
+    
+    getApartments(cityName);
+}
+
+var addCity = function(city) {
+    var cityEl = document.createElement("button");
+    cityEl.textContent = city;
+    cityEl.type = "button";
+    cityEl.classList = "btn btn-light border p-3 m-0";
+
+    cityHolderEl.addEventListener("click", resetCityHandler);
+    cityHolderEl.appendChild(cityEl);
+};
 
 var getApartments = function(city) {
+    addLoading();
     
     var apiURL = "https://realtor.p.rapidapi.com/properties/v2/list-for-rent?sort=relevance&city=" + city + "&state_code=CA&limit=200&offset=0";
     fetch(apiURL, {
@@ -23,18 +63,37 @@ var getApartments = function(city) {
     }).catch(function(error){
         alert("Unable to connect to Realtor API");
     })
-    
-    console.log(city);
+}
+
+var addLoading = function(){
+    if(headerEl){
+        apartmentsEl.removeChild(headerEl);
+        apartmentsEl.removeChild(cardHolderEl);
+    }
+    apartmentsEl.classList = "col-12 col-md-8 col";
+
+    loadingEl = document.createElement("h2");
+    loadingEl.textContent = "Loading...";
+    loadingEl.classList = "loadtext py-3";
+
+    spinnerEl = document.createElement("div");
+    spinnerEl.classList = "spinner";
+
+    apartmentsEl.appendChild(loadingEl);
+    apartmentsEl.appendChild(spinnerEl);
 }
 
 var displayApartments = function(data) {
-    apartmentsEl.textContent = "";
-    apartmentsEl.classList = "d-flex flex-column border p-2";
 
-    var headerEl = document.createElement("h3");
+    apartmentsEl.removeChild(spinnerEl);
+    apartmentsEl.removeChild(loadingEl);
+    apartmentsEl.textContent = "";
+    apartmentsEl.classList = "d-flex flex-column border p-2 col-12 col-md-8";
+
+    headerEl = document.createElement("h3");
     headerEl.textContent = "Apartments:";
 
-    var cardHolderEl = document.createElement("div");
+    cardHolderEl = document.createElement("div");
     cardHolderEl.classList = "col justify-content-around";
 
     for(var i = 0; i < 5; i ++){
@@ -139,6 +198,8 @@ var formSubmitHandler = function(event) {
     var city = nameInputEl.value.trim();
 
     if (city) {
+        saveCities(city);
+        addCity(city);
         getApartments(city);
         nameInputEl.value = "";
     }
@@ -148,3 +209,5 @@ var formSubmitHandler = function(event) {
 }
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+
+loadCities();
