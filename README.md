@@ -1,3 +1,10 @@
+# GitHub Pages: 
+
+https://srikar2020.github.io/Project1/
+
+
+
+
 # Bay Area Real Estate 
 
 ![bayarearealestate](https://user-images.githubusercontent.com/61364418/92677445-badb1880-f2d8-11ea-837e-09bdcbb65e9b.JPG)
