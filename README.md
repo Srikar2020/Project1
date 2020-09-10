@@ -2,16 +2,13 @@
 
 
 
-https://imgur.com/xYymHVt
-
 
 
 
 # Description 
 
 
-The website we developed doesnt need anything to download. When we were finaly able to deploy it its simple to use. There is a simplicity to the way when you search for a city in the Bay Area you get the listings of a couple of apartment buildings and phone number of the listing persons number, the adress and the size of the rooms. 
-
+The website we developed doesnt need anything to download. When we were finaly able to deploy it its simple to use. There is a simplicity to the way when you search for a city in the Bay Area you get the listings of a couple of apartment buildings and phone number of the person listing the apartment number, the adress and the size of the rooms. There is another information that our website provides with the search of the city you can find the nearest grocery store. 
 
 
 # Functionality 
@@ -30,6 +27,18 @@ We were able to get the ball rolling pretty quick the API allowed up to 20-50 se
 # Work Split Evenly 
 
 Since we only had two people in the group we split the work up between eachother. The HTML/Styling/Keeping the github side updated was Srikars role. The JavaScript and also with overall help in editing was Andys role. 
+
+
+# Collaborators
+
+Andy Tang : https://github.com/andytang02
+
+Srikar Kudumula : https://github.com/Srikar2020/Project1
+
+
+# Technologies & Prerequisites 
+
+The Website can be deployed on Firefox, Safari & Chrome.There are no prerequisites. 
 
 
 
