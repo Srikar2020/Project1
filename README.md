@@ -4,17 +4,17 @@ https://srikar2020.github.io/Project1/
 
 
 # Table of Contents
-1. [Bay Area Real Estate](#Bay Area Real Estate)
+1. [BayArea](#BayArea)
 2. [Description](#Description)
 3. [Functionality](#Functionality)
 4. [Process](#Process)
-3. [Work Split Evenly](#Work Split Evenly)
+3. [Work](#Work)
 4. [Collaborators](#Collaborators)
-5. [Technologies & Prerequisites](#Technologies & Prerequisites)
+5. [Technologies](#Technologies)
 
 
 
-# Bay Area Real Estate 
+# BayArea
 
 ![bayarearealestate](https://user-images.githubusercontent.com/61364418/92677445-badb1880-f2d8-11ea-837e-09bdcbb65e9b.JPG)
 
@@ -40,7 +40,7 @@ We were able to get the ball rolling pretty quick the API allowed up to 20-50 se
 
 
 
-# Work Split Evenly 
+# Work 
 
 Since we only had two people in the group we split the work up between eachother. The HTML/Styling/Keeping the github side updated was Srikars role. The JavaScript and also with overall help in editing was Andys role. 
 
@@ -52,7 +52,7 @@ Andy Tang : https://github.com/andytang02
 Srikar Kudumula : https://github.com/Srikar2020/Project1
 
 
-# Technologies & Prerequisites 
+# Technologies 
 
 The Website can be deployed on Firefox, Safari & Chrome.There are no prerequisites to deploy the web application. 
 
