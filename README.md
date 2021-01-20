@@ -3,6 +3,15 @@
 https://srikar2020.github.io/Project1/
 
 
+# Table of Contents
+1. [Bay Area Real Estate](#Bay Area Real Estate)
+2. [Description](#Description)
+3. [Functionality](#Functionality)
+4. [Process](#Process)
+3. [Work Split Evenly](#Work Split Evenly)
+4. [Collaborators](#Collaborators)
+5. [Technologies & Prerequisites](#Technologies & Prerequisites)
+
 
 
 # Bay Area Real Estate 
@@ -15,7 +24,7 @@ https://srikar2020.github.io/Project1/
 # Description 
 
 
-The website we developed doesnt need anything to download. When we were finaly able to deploy it its simple to use. There is a simplicity to the way when you search for a city in the Bay Area you get the listings of a couple of apartment buildings and phone number of the person listing the apartment number, the adress and the size of the rooms. There is another information that our website provides with the search of the city you can find the nearest grocery store. 
+The website we developed does not need anything to download for it to function. When we were finally able to deploy it it is very simple to use. There is a simplicity to the way when you search for a city in the Bay Area you get the listings of a couple of apartment buildings and phone number of the person listing the apartment number, the adress and the size of the rooms. There is another information that our website provides with the search of the city you can find the nearest grocery store. 
 
 
 # Functionality 
@@ -45,7 +54,7 @@ Srikar Kudumula : https://github.com/Srikar2020/Project1
 
 # Technologies & Prerequisites 
 
-The Website can be deployed on Firefox, Safari & Chrome.There are no prerequisites. 
+The Website can be deployed on Firefox, Safari & Chrome.There are no prerequisites to deploy the web application. 
 
 
 
