@@ -55,19 +55,13 @@
     animation-timing-function: linear; 
     margin-left: auto;
     margin-right: auto;
-    /* transform: rotate(3deg); */
-     /* transform: rotate(0.3rad);/ */
-     /* transform: rotate(3grad); */ 
-     /* transform: rotate(.03turn);  */
+
   }
 
   .loadtext {
     text-align:center;
   }
 
-  .offset {
-    
-  }
   
   @keyframes spin {
       from {

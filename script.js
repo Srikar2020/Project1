@@ -127,12 +127,6 @@ var displayApartments = function(data) {
         cardEl.appendChild(bedbathEl);
         cardEl.appendChild(priceEl);
         cardEl.appendChild(contactEl);
-        /*
-        cardEl.appendChild(storenameEl);
-        cardEl.appendChild(storeaddressEl);
-        cardEl.appendChild(storedistanceEl);
-        */
-
         cardHolderEl.appendChild(cardEl);
     }
 
