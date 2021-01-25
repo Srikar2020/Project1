@@ -1,3 +1,4 @@
+//* var chars //*  
 var searches = [];
 var userFormEl = document.querySelector("#search-form");
 var nameInputEl = document.querySelector("#search");
@@ -7,7 +8,7 @@ var loadingEl;
 var spinnerEl;
 var headerEl;
 var cardHolderEl;
-
+//* searches using localstorage //*  
 var loadCities = function (){
     searches = localStorage.getItem("searches");
     if(searches === null){
@@ -20,16 +21,22 @@ var loadCities = function (){
     }
 };
 
+//* var cities //*  
+
 var saveCities = function(city) {
     searches.push(city);
     localStorage.setItem("searches", searches);
 }
+
+//* var handleing cities //*  
 
 var resetCityHandler = function(event) {
     var cityName = event.target.innerHTML;
     
     getApartments(cityName);
 }
+
+//* var ading the cities //*  
 
 var addCity = function(city) {
     var cityEl = document.createElement("button");
@@ -40,6 +47,8 @@ var addCity = function(city) {
     cityHolderEl.addEventListener("click", resetCityHandler);
     cityHolderEl.appendChild(cityEl);
 };
+
+//* var can see apartments using hte API //*  
 
 var getApartments = function(city) {
     addLoading();
@@ -65,6 +74,8 @@ var getApartments = function(city) {
     })
 }
 
+//* var loading function to show the API running  //*  
+
 var addLoading = function(){
     if(headerEl){
         apartmentsEl.removeChild(headerEl);
@@ -83,6 +94,7 @@ var addLoading = function(){
     apartmentsEl.appendChild(spinnerEl);
 }
 
+//* var Apartments function connecting to the API //*  
 var displayApartments = function(data) {
 
     apartmentsEl.removeChild(spinnerEl);
@@ -139,6 +151,8 @@ var displayApartments = function(data) {
     setTimeout(function(){getStore(data[3].address.lat,data[3].address.lon,3);}, (7500));
     setTimeout(function(){getStore(data[4].address.lat,data[4].address.lon,4);}, (10000));
 }
+
+//* var the store for the cities //*  
 
 var getStore = function(lat, lon, i) {
     var apiURL = "https://trueway-places.p.rapidapi.com/FindPlacesNearby?type=grocery_store&radius=9999&language=en&location=" + lat + "%252C" + lon;
